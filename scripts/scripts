@@ -1,0 +1,8 @@
+# Install IIS and start the service
+Install-WindowsFeature -name Web-Server -IncludeManagementTools
+Start-Service W3SVC
+Set-Service W3SVC -StartupType Automatic
+
+# Sample index.html page
+$html = "<html><body><h1>Infra Automation by Trisala</h1></body></html>"
+$html | Out-File -FilePath "C:\inetpub\wwwroot\index.html"

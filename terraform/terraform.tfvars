@@ -1,0 +1,5 @@
+resource_group_name = "autoinfra-rg"
+location            = "East US"
+vm_name             = "AutoVM"
+admin_username      = "vtrisala"
+admin_password      = "Tommy@1997"
