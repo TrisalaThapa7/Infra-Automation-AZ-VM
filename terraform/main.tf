@@ -66,3 +66,18 @@ resource "azurerm_windows_virtual_machine" "vm" {
     environment = "dev"
   }
 }
+
+resource "azurerm_virtual_machine_extension" "custom_script" {
+  name                 = "powershell-post-deploy"
+  virtual_machine_id   = azurerm_windows_virtual_machine.vm.id
+  publisher            = "Microsoft.Compute"
+  type                 = "CustomScriptExtension"
+  type_handler_version = "1.10"
+
+  settings = jsonencode({
+    "fileUris" = [
+      "https://raw.githubusercontent.com/TrisalaThapa7/Infra-Automation-AZ-VM/main/scripts/post-deploy.ps1"
+    ]
+    "commandToExecute" = "powershell -ExecutionPolicy Unrestricted -File post-deploy.ps1"
+  })
+}
